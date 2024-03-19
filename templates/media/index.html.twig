@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Media index{% endblock %}
+
+{% block body %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>ReleaseDate</th>
+                <th>Duration</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medium in media %}
+            <tr>
+                <td>{{ medium.id }}</td>
+                <td>{{ medium.name }}</td>
+                <td>{{ medium.description }}</td>
+                <td>{{ medium.image }}</td>
+                <td>{{ medium.releaseDate ? medium.releaseDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ medium.duration ? medium.duration|date('H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_media_show', {'id': medium.id}) }}">show</a>
+                    <a href="{{ path('app_media_edit', {'id': medium.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_media_new') }}">Create new</a>
+{% endblock %}

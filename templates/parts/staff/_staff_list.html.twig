@@ -1,0 +1,17 @@
+<div class="row g-5 my-3 justify-content-evenly">
+    {% for person in staffs %}
+
+        <a href="{{ path('app_home_show_person', {'id': person.id}) }}" class="text-light text-decoration-none col-sm-4  col-lg-2 p-1">
+            <div class="custom-card ">
+                <img class="card-img h-75" src="{{ asset(person.image ) }}" alt="{{ person.image }}">
+                <div class="text-light d-flex flex-column justify-content-evenly p-3 align-items-center">
+                    <p class="text-center h5">{{ person.name }}</p>
+                    <p class="text-center h5">{{ person.type|capitalize }}</p>
+                </div>
+            </div>
+
+        </a>
+    {% else %}
+        <p>Aucun Casting pour le moment</p>
+    {% endfor %}
+</div>

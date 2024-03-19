@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <div>
+        {% include "parts/media/_media_list.html.twig" %}
+        <h2 class="my-4">{% trans %}The Cast{% endtrans %}</h2>
+        {% include "parts/staff/_staff_list.html.twig" %}
+    </div>
+{% endblock %}

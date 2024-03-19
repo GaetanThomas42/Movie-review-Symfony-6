@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MediaReview index{% endblock %}
+
+{% block body %}
+    <h1>MediaReview index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Value</th>
+                <th>Content</th>
+                <th>CreationDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for media_review in media_reviews %}
+            <tr>
+                <td>{{ media_review.id }}</td>
+                <td>{{ media_review.value }}</td>
+                <td>{{ media_review.content }}</td>
+                <td>{{ media_review.creationDate ? media_review.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_media_review_show', {'id': media_review.id}) }}">show</a>
+                    <a href="{{ path('app_media_review_edit', {'id': media_review.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_media_review_new') }}">Create new</a>
+{% endblock %}

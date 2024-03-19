@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-between p-4 border-bottom border-danger">
+    <p class="h2 col-4 text-danger">NUTFLUX</p>
+
+    <div class="col d-flex justify-content-evenly ">
+        <a class="nav-btn" href="{{ path("app_home") }}"><p>Accueil</p></a>
+        <a class="nav-btn" href="{{ path("app_home_all_medias") }}"><p>Les médias</p></a>
+        <a class="nav-btn" href="{{ path("app_home_all_staff") }}"><p>Le casting</p></a>
+        {% if is_granted("ROLE_ADMIN") %}
+            <a class="nav-btn" href="{{ path("app_media_index") }}">Médias</a>
+            <a class="nav-btn" href="{{ path("app_person_index") }}">Casting</a>
+            <a class="nav-btn" href="{{ path("app_genre_index") }}">Genres</a>
+            <a class="nav-btn" href="{{ path("app_type_index") }}">Types</a>
+            <a class="nav-btn text-danger" href="{{ path("app_logout") }}">Logout</a>
+        {% else %}
+            <a class="nav-btn" href="{{ path("app_login") }}">Login</a>
+        {% endif %}
+    </div>
+</div>

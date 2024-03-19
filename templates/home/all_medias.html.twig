@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les médias{% endblock %}
+
+{% block body %}
+    <div>
+        {# Differents syntax to include a template with parameters and default value  #}
+        {#    {{ include("parts/media/_media_list.html.twig",{'col': 3}) }} #}
+        {#    {% include "parts/media/_media_list.html.twig" with {'colMd': 3} %} #}
+        {% include "parts/media/_media_list.html.twig" %}
+    </div>
+{% endblock %}

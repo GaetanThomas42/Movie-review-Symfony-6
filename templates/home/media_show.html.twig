@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ media.name }}{% endblock %}
+
+{% block body %}
+    <div class="row my-5">
+<div class="d-flex my-5">
+    <img class="col-6" src="{{ asset(media.image ) }}" alt="{{ media.name }}">
+    <div class="d-flex flex-column justify-content-evenly p-3 align-items-center">
+        <p class="mt-3">{{ media.description }}</p>
+        <p>Sortie le {{ media.releaseDate ? media.releaseDate|date('D M Y ') : '' }}</p>
+        <p>Durée {{ media.duration ? media.duration|date('H:i:s ') : '' }}</p>
+        <p class="text-center">
+            {% if average is not null %}
+                {% for i in 1..average %}
+                    ⭐
+                {% endfor %}
+                <span>
+                        ( {{ media.mediaReviews|length }} avis {{ average|number_format(2, '.', ',') }} )
+                    </span>
+            {% else %}
+                Pas encore d'avis
+            {% endif %}
+        </p>
+        <p>{{ media.type|capitalize }}
+    <small>(
+        {% for genre in media.genres %}
+            {{ genre }}
+        {% endfor %}
+    )</small>
+        </p>
+    </div>
+</div>
+        <h2 class="text-center">Le Casting</h2>
+
+        <div class="d-flex flex-wrap justify-content-evenly">
+            {% for person in media.staff %}
+                <div class="col-2">
+                    <img class="img-fluid" src="{{ asset(person.image ) }}" alt="{{ person.name }}">
+                    <div class="h4 d-flex justify-content-between"><p>{{ person.name }}</p>
+                        <small>{{ person.type|capitalize }}</small></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="d-flex flex-wrap justify-content-evenly p-5 my-5 text-center">
+        {% for review in media.mediaReviews %}
+            <a href="{{ path('app_home_show_person', {'id': person.id}) }}" class="col-3">
+                <p class="h5">{{ review.user }}</p>
+                <p class="h5">{{ review.creationDate|date('d/m/y H:i') }}</p>
+                <p class="h5">{{ review.content }}</p>
+                <p>
+                    {% for i in 1..review.value %}
+                        ⭐
+                    {% endfor %}
+                </p>
+            </a>
+        {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}

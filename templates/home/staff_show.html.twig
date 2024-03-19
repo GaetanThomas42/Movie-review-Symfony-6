@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ person.name }}{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex ">
+        <img class="col-3" src="{{ asset(person.image) }}" alt="{{ person.image }}">
+        <div class="col d-flex flex-column justify-content-evenly p-3 align-items-center">
+            <p class="text-center h5">{{ person.type|capitalize }}</p>
+            <div class="d-flex flex-wrap justify-content-evenly">
+                {% for media in person.medias %}
+                    <div class="d-flex">
+                        <a href="{{ path('app_home_show_medias', {'id': media.id}) }}"
+                           class="h5 m-5">{{ media.name|capitalize }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
